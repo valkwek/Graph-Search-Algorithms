@@ -6,7 +6,7 @@ import java.util.HashMap;
 public class Dijkstra {
     // DIJKSTRA -- finds shortest path distance, outputs MAX_VALUE if no path is found
     // input: tail maps to hashmap of neighbors (head, length)
-    public static HashMap<Integer, Integer> shortestPath (HashMap<Integer, HashMap<Integer, Integer>> input, int start) {
+    public static HashMap<Integer, Integer> dijkstra (HashMap<Integer, HashMap<Integer, Integer>> input, int start) {
         HashMap<Integer, Integer> distances = new HashMap<>();
         ArrayList<int[]> visited = new ArrayList<>();
         for (int i = 1; i <= input.size(); i++) {
