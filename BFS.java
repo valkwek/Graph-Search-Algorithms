@@ -21,11 +21,11 @@ public class BFS {
                 for (Integer n : input.get(curr)) {
                     if (!(visited.contains(n))) {
                         queue.add(n);
-                        visited.add(n);
                     }
                 }
             }
             order.add(curr);
+            visited.add(curr);
         }
         // return nodes in increasing levels on tree
         return order;
