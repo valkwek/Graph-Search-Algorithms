@@ -5,36 +5,30 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class DFS {
-    // DFS -- returns nodes in reverse topological order (children before parent)
+    // DFS -- returns nodes in  topological order (parent before children) -- pre order
     public static ArrayList<Integer> DFS (HashMap<Integer, ArrayList<Integer>> input, int start) {
         // initialization
         ArrayList<Integer> order = new ArrayList<>();
-        boolean next;
         ArrayList<Integer> stack = new ArrayList<>();
+        HashSet<Integer> visited = new HashSet<>();
         stack.add(start);
-        HashSet<Integer> explored = new HashSet<>();
-        explored.add(start);
+        visited.add(start);
         // while input not fully explored
         while (!(stack.isEmpty())) {
-            int curr = stack.get(stack.size() - 1);
-            next = false;
+            int curr = stack.remove(stack.size() - 1);
             // explore neighbors
             ArrayList<Integer> neighbors = input.get(curr);
-            for (Integer n : neighbors) {
-                if (!(explored.contains(n))) {
-                    next = true;
-                    stack.add(n);
-                    explored.add(n);
-                    break;
+            if (input.containsKey(curr)) {
+                for (Integer n : neighbors) {
+                    if (!(visited.contains(n))) {
+                        stack.add(n);
+                    }
                 }
             }
-            // remove if nothing new added to stack
-            if (!next) {
-                order.add(curr);
-                stack.remove(stack.size() - 1);
-            }
+            order.add(curr);
+            visited.add(curr);
         }
-        // return nodes in reverse topological order
+        // return nodes in topological order
         return order;
     }
 }
